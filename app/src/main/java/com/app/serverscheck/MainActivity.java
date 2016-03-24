@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
         webViewAlerts.setWebChromeClient(new CustomWebChromeClient(this));
         webViewMap.setWebChromeClient(new CustomWebChromeClient(this));
 
-        webViewDevices.loadUrl(String.format(Constants.serverUrlTemplate, "logout.php"));
+        webViewDevices.loadUrl(String.format(Constants.BASE_URL, "logout.php"));
 
         webViewDevices.getSettings().setJavaScriptEnabled(true);
         webViewAlerts.getSettings().setJavaScriptEnabled(true);
@@ -118,12 +118,12 @@ public class MainActivity extends Activity {
                 textViewLastRefreshTime.setText(new SimpleDateFormat("dd MMM dd, yyyy - HH:mm").format(dateTimeDevices));
 
                 if (isNetworkAvailable()) {
-                    webViewDevices.loadUrl(String.format(Constants.serverUrlTemplate, "m/device.php"));
+                    webViewDevices.loadUrl(String.format(Constants.BASE_URL, "m/device.php"));
                 }
             }
         } else if (webViewDevices.getVisibility() == View.VISIBLE) {
             if (webViewDevices.canGoBack()) {
-                if (!webViewDevices.getUrl().equals(String.format(Constants.serverUrlTemplate, "m/device.php"))) {
+                if (!webViewDevices.getUrl().equals(String.format(Constants.BASE_URL, "m/device.php"))) {
                     webViewDevices.goBack();
                 }
             }
@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
                 textViewLastRefreshTime.setText(new SimpleDateFormat("dd MMM dd, yyyy - HH:mm").format(dateTimeDevices));
 
                 if (isNetworkAvailable()) {
-                    webViewDevices.loadUrl(String.format(Constants.serverUrlTemplate, "m/device.php"));
+                    webViewDevices.loadUrl(String.format(Constants.BASE_URL, "m/device.php"));
                 }
             }
         }
@@ -161,7 +161,7 @@ public class MainActivity extends Activity {
                 textViewLastRefreshTime.setText(new SimpleDateFormat("dd MMM dd, yyyy - HH:mm").format(dateTimeAlerts));
 
                 if (isNetworkAvailable()) {
-                    webViewAlerts.loadUrl(String.format(Constants.serverUrlTemplate, "m/alerts.php"));
+                    webViewAlerts.loadUrl(String.format(Constants.BASE_URL, "m/alerts.php"));
                 }
             } else if (view.getId() == R.id.buttonDevices) {                                         // Devices Button
                 webViewMap.setVisibility(View.GONE);
@@ -170,7 +170,7 @@ public class MainActivity extends Activity {
                 textViewLastRefreshTime.setText(new SimpleDateFormat("dd MMM dd, yyyy - HH:mm").format(dateTimeDevices));
 
                 if (isNetworkAvailable()) {
-                    webViewDevices.loadUrl(String.format(Constants.serverUrlTemplate, "m/device.php"));
+                    webViewDevices.loadUrl(String.format(Constants.BASE_URL, "m/device.php"));
                 }
             } else if (view.getId() == R.id.buttonMap) {                                            // Map Button
                 webViewDevices.setVisibility(View.GONE);
@@ -179,10 +179,10 @@ public class MainActivity extends Activity {
                 textViewLastRefreshTime.setText(new SimpleDateFormat("dd MMM dd, yyyy - HH:mm").format(dateTimeMap));
 
                 if (isNetworkAvailable()) {
-                    webViewMap.loadUrl(String.format(Constants.serverUrlTemplate, "m/map.php"));
+                    webViewMap.loadUrl(String.format(Constants.BASE_URL, "m/map.php"));
                 }
             } else if (view.getId() == R.id.buttonLogout) {                                         // Logout Button
-                webViewDevices.loadUrl(String.format(Constants.serverUrlTemplate, "logout.php"));
+                webViewDevices.loadUrl(String.format(Constants.BASE_URL, "logout.php"));
             } else if (view.getId() == R.id.textViewLogin) {                                        // Log in Button
                 if (isNetworkAvailable()) {
                     SharedPreferences sharedPreferences = getSharedPreferences("ServicesCheck", Context.MODE_PRIVATE);
@@ -190,7 +190,7 @@ public class MainActivity extends Activity {
                     String password = sharedPreferences.getString("Password", "");
 
                     // Check data from SharedPreferences
-                    if ((email == null || email.isEmpty()) && (password == null || password.isEmpty())) {
+                    if (email.isEmpty() || password.isEmpty()) {
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
                         alertDialogBuilder.setTitle("Error");
                         alertDialogBuilder.setMessage("Please set up username and password. Do you want to set up them now?");
@@ -213,7 +213,7 @@ public class MainActivity extends Activity {
                     } else {
                         String postDataBody = "email=" + email + "&pass=" + password;
                         isLogging = true;
-                        webViewDevices.postUrl(String.format(Constants.serverUrlTemplate, "login.php"), postDataBody.getBytes(Charset.forName("UTF-8")));
+                        webViewDevices.postUrl(String.format(Constants.BASE_URL, "login.php"), postDataBody.getBytes(Charset.forName("UTF-8")));
                     }
                 } else {
                     RegexUtilities.showAlertDialog(MainActivity.this, "Warning", "Please check your network connection.");
@@ -237,7 +237,7 @@ public class MainActivity extends Activity {
         relativeLayoutWebViews.setVisibility(View.VISIBLE);
         isLogging = false;
 
-        webViewDevices.loadUrl(String.format(Constants.serverUrlTemplate, "m/device.php"));
+        webViewDevices.loadUrl(String.format(Constants.BASE_URL, "m/device.php"));
         isLogined = true;
     }
 

@@ -12,22 +12,16 @@ public class RegexUtilities {
     // check email
     static boolean isInvaild = false;
 
-    public static boolean isInVaildEmail(String string) {
-        isInvaild = false;
-        if (string != null && string.isEmpty())
-            isInvaild = false;
-
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(string);
-
-        if (matcher.matches()) {
-            isInvaild = true;
-        } else {
-            isInvaild = false;
-        }
-
-        return isInvaild;
+    /**
+     * Validate email address
+     *
+     * @return true if @param email is valid email address,
+     * otherwise false
+     */
+    public static boolean validateEmail(String email) {
+        Pattern p = Pattern.compile("[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}", Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(email);
+        return m.matches();
     }
 
     // show alert dialog

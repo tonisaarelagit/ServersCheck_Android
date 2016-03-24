@@ -2,6 +2,8 @@ package com.app.serverscheck;
 
 import android.graphics.Bitmap;
 import android.view.View;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -30,14 +32,14 @@ public class CustomWebViewClient extends WebViewClient {
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
         if (_mainActivity.isLogging) {
-            if (url.equals(String.format(Constants.serverUrlTemplate, "device.php"))) {
+            if (url.equals(String.format(Constants.BASE_URL, "device.php"))) {
                 _mainActivity.onLogined();
             } else {
                 RegexUtilities.showAlertDialog(_mainActivity, "Error", "Login failed. Please verify your network settings, username & password.");
                 _mainActivity.showLoading(false);
             }
             _mainActivity.isLogging = false;
-        } else if (url.equals(String.format(Constants.serverUrlTemplate, "login.php"))) {
+        } else if (url.equals(String.format(Constants.BASE_URL, "login.php"))) {
             _mainActivity.onLogout();
             _mainActivity.showLoading(false);
         } else if (view.getVisibility() == View.VISIBLE || !_mainActivity.isLogined) {
@@ -56,8 +58,9 @@ public class CustomWebViewClient extends WebViewClient {
         }
     }
 
-    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-        super.onReceivedError(view, errorCode, description, failingUrl);
+    @Override
+    public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+        super.onReceivedError(view, request, error);
         _mainActivity.showLoading(false);
     }
 }

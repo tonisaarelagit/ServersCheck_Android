@@ -1,5 +1,5 @@
 package com.app.serverscheck;
 
 public class Constants {
-    public static String serverUrlTemplate = "https://my.infrastructuremonitoring.com/%s";
+    public static String BASE_URL = "https://my.infrastructuremonitoring.com/%s";
 }

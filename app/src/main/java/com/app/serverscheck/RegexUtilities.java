@@ -7,9 +7,6 @@ import android.content.DialogInterface;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Brightest Star on 12/18/2015.
- */
 public class RegexUtilities {
 
     // check email

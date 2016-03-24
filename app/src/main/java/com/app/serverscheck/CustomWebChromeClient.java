@@ -6,9 +6,6 @@ import android.webkit.WebView;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by Brightest Star on 12/20/2015.
- */
 public class CustomWebChromeClient extends WebChromeClient {
 
     private Date _startDateTime;

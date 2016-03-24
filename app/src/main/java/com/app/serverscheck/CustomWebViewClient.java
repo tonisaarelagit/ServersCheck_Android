@@ -8,9 +8,6 @@ import android.webkit.WebViewClient;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by Brightest Star on 12/19/2015.
- */
 public class CustomWebViewClient extends WebViewClient {
 
     // variable for main activity

@@ -11,9 +11,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-/**
- * Created by Brightest Star on 12/18/2015.
- */
 public class AccountActivity extends Activity {
 
     // declare variables

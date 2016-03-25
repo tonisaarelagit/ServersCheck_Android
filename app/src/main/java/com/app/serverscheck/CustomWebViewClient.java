@@ -15,23 +15,24 @@ import java.util.Date;
 
 public class CustomWebViewClient extends WebViewClient {
 
-    // variable for main activity
     private MainActivity _mainActivity;
 
     public CustomWebViewClient(MainActivity mainActivity) {
         _mainActivity = mainActivity;
     }
 
+    @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
         _mainActivity.showLoading(true);
     }
 
+    @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        super.shouldOverrideUrlLoading(view, url);
-        return true;
+        return super.shouldOverrideUrlLoading(view, url);
     }
 
+    @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
         if (_mainActivity.isLogging) {

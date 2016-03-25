@@ -1,5 +1,6 @@
 package com.app.serverscheck.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,6 +29,7 @@ import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressLint("SetJavaScriptEnabled")
 public class MainActivity extends BaseActivity {
 
     // declare variables for private
@@ -209,7 +211,7 @@ public class MainActivity extends BaseActivity {
                 } else {
                     RegexUtilities.showAlertDialog(MainActivity.this, "Warning", "Please check your network connection.");
                 }
-            } else if (view.getId() == R.id.textViewAccount) {                                      // Account Button
+            } else if (view.getId() == R.id.textViewAccount) {
                 Intent intentAccount = new Intent(MainActivity.this, AccountActivity.class);
                 startActivity(intentAccount);
             }

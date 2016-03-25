@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ffffff"
-    android:minHeight="25px"
-    android:minWidth="25px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#FFA02F"
-        android:minHeight="25px"
-        android:minWidth="25px"
-        android:orientation="horizontal" />
+        android:minWidth="24dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:minHeight="25px"
-        android:minWidth="25px"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:minHeight="25px"
-            android:minWidth="25px"
             android:orientation="vertical"
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
@@ -41,6 +31,8 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/logo" />
 
             <EditText
@@ -48,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Email"
+                android:hint="@string/Email"
                 android:inputType="textEmailAddress"
                 android:textColor="#000000"
                 android:textColorHint="#cccccc" />
@@ -58,57 +50,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Password"
+                android:hint="@string/Password"
                 android:inputType="textPassword"
                 android:textColor="#000000"
                 android:textColorHint="#cccccc" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:minHeight="25px"
-            android:minWidth="25px"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buttonSave"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/buttonbg"
-                android:text="Save"
+                android:text="@string/Save"
                 android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/buttonCancel"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/buttonbg"
-                android:text="Cancel"
+                android:text="@string/Cancel"
                 android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFA02F"
-        android:minHeight="25px"
-        android:minWidth="25px"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="right"
-            android:minHeight="25px"
-            android:minWidth="25px"
-            android:orientation="horizontal" />
-    </LinearLayout>
+        android:layout_height="50dp"
+        android:background="#FFA02F" />
 </LinearLayout>

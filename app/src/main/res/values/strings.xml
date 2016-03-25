@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ServersCheck</string>
+
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Save">Save</string>
+    <string name="Cancel">Cancel</string>
 </resources>

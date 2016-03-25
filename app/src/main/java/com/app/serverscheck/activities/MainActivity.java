@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -32,11 +31,11 @@ import java.util.Date;
 public class MainActivity extends BaseActivity {
 
     // declare variables for private
-    private Button buttonMap, buttonDevices, buttonAlerts, buttonLogout;
-    private ImageView imageViewLogoMain, imageViewLogoBottom;
-    private TextView textViewLogin, textViewAccount;
-    private LinearLayout linearLayoutMenuButtons, linearLayoutLogin, linearLayoutLoading;
-    private RelativeLayout relativeLayoutWebViews;
+    Button buttonLogout;
+    ImageView imageViewLogoMain, imageViewLogoBottom;
+    TextView textViewLogin, textViewAccount;
+    LinearLayout linearLayoutMenuButtons, linearLayoutLogin, linearLayoutLoading;
+    RelativeLayout relativeLayoutWebViews;
 
     // declare variables for public
     public TextView textViewLastRefreshTime;
@@ -48,19 +47,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // set full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        // set layout with xml
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        // button
-        buttonMap = (Button) findViewById(R.id.buttonMap);
-        buttonDevices = (Button) findViewById(R.id.buttonDevices);
-        buttonAlerts = (Button) findViewById(R.id.buttonAlerts);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
 
         // text view
@@ -68,11 +59,9 @@ public class MainActivity extends BaseActivity {
         textViewAccount = (TextView) findViewById(R.id.textViewAccount);
         textViewLastRefreshTime = (TextView) findViewById(R.id.textViewLastRefreshTime);
 
-        // image view
         imageViewLogoMain = (ImageView) findViewById(R.id.imageViewLogoMain);
         imageViewLogoBottom = (ImageView) findViewById(R.id.imageViewLogoBottom);
 
-        // layout
         linearLayoutLogin = (LinearLayout) findViewById(R.id.linearLayoutLogin);
         linearLayoutLoading = (LinearLayout) findViewById(R.id.linearLayoutLoading);
         linearLayoutMenuButtons = (LinearLayout) findViewById(R.id.linearLayoutMenuButtons);
@@ -106,9 +95,9 @@ public class MainActivity extends BaseActivity {
         textViewLogin.setOnClickListener(setOnClickListener);
         textViewAccount.setOnClickListener(setOnClickListener);
         buttonLogout.setOnClickListener(setOnClickListener);
-        buttonMap.setOnClickListener(setOnClickListener);
-        buttonDevices.setOnClickListener(setOnClickListener);
-        buttonAlerts.setOnClickListener(setOnClickListener);
+        findViewById(R.id.buttonMap).setOnClickListener(setOnClickListener);
+        findViewById(R.id.buttonDevices).setOnClickListener(setOnClickListener);
+        findViewById(R.id.buttonAlerts).setOnClickListener(setOnClickListener);
     }
 
     // for back pressed

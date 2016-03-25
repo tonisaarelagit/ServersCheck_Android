@@ -3,6 +3,8 @@ package com.app.serverscheck;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import com.app.serverscheck.activities.MainActivity;
+
 import java.util.Calendar;
 import java.util.Date;
 

@@ -1,11 +1,9 @@
-package com.app.serverscheck;
+package com.app.serverscheck.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,11 +18,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.app.serverscheck.utils.Constants;
+import com.app.serverscheck.CustomWebChromeClient;
+import com.app.serverscheck.CustomWebViewClient;
+import com.app.serverscheck.R;
+import com.app.serverscheck.RegexUtilities;
+import com.app.serverscheck.activities.base.BaseActivity;
+
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     // declare variables for private
     private Button buttonMap, buttonDevices, buttonAlerts, buttonLogout;
@@ -185,12 +190,9 @@ public class MainActivity extends Activity {
                 webViewDevices.loadUrl(String.format(Constants.BASE_URL, "logout.php"));
             } else if (view.getId() == R.id.textViewLogin) {                                        // Log in Button
                 if (isNetworkAvailable()) {
-                    SharedPreferences sharedPreferences = getSharedPreferences("ServicesCheck", Context.MODE_PRIVATE);
-                    String email = sharedPreferences.getString("Email", "");
-                    String password = sharedPreferences.getString("Password", "");
-
-                    // Check data from SharedPreferences
-                    if (email.isEmpty() || password.isEmpty()) {
+                    String email = localStorage.getStringPreference(Constants.EMAIL);
+                    String password = localStorage.getStringPreference(Constants.PASSWORD);
+                    if (email == null || password == null) {
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
                         alertDialogBuilder.setTitle("Error");
                         alertDialogBuilder.setMessage("Please set up username and password. Do you want to set up them now?");

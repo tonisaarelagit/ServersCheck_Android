@@ -9,9 +9,6 @@ import java.util.regex.Pattern;
 
 public class RegexUtilities {
 
-    // check email
-    static boolean isInvaild = false;
-
     /**
      * Validate email address
      *

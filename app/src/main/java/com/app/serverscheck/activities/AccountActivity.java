@@ -1,37 +1,33 @@
-package com.app.serverscheck;
+package com.app.serverscheck.activities;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 
-public class AccountActivity extends Activity implements View.OnClickListener {
+import com.app.serverscheck.R;
+import com.app.serverscheck.RegexUtilities;
+import com.app.serverscheck.activities.base.BaseActivity;
+import com.app.serverscheck.utils.Constants;
+
+public class AccountActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText textEmail, textPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // set full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // set layout with xml
         setContentView(R.layout.activity_account);
 
         textEmail = (EditText) findViewById(R.id.editTextEmail);
         textPassword = (EditText) findViewById(R.id.editTextPassword);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("ServicesCheck", Context.MODE_PRIVATE);
-        String email = sharedPreferences.getString("Email", "");
-        String password = sharedPreferences.getString("Password", "");
+        String email = localStorage.getStringPreference(Constants.EMAIL);
+        String password = localStorage.getStringPreference(Constants.PASSWORD);
 
         textEmail.setText(email);
         textPassword.setText(password);
@@ -48,11 +44,8 @@ public class AccountActivity extends Activity implements View.OnClickListener {
                     RegexUtilities.showAlertDialog(AccountActivity.this,
                             "Validation", "Password can not be empty.");
                 } else {
-                    SharedPreferences sharedPreferences = getSharedPreferences("ServicesCheck", Context.MODE_APPEND);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("Email", textEmail.getText().toString());
-                    editor.putString("Password", textPassword.getText().toString());
-                    editor.apply();
+                    localStorage.put(Constants.EMAIL, textEmail.getText().toString());
+                    localStorage.put(Constants.PASSWORD, textPassword.getText().toString());
 
                     onBackPressed();
                 }

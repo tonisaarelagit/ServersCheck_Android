@@ -7,6 +7,9 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.app.serverscheck.activities.MainActivity;
+import com.app.serverscheck.utils.Constants;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
